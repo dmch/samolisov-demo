@@ -1,0 +1,3 @@
+instructions.configure=\
+  addRepository(type:0,name:Hyperbola IM,location:file${#58}/C:/Users/psamolisov/Developing/java/_learn-eclipse-plugins-workspace/build/repository);\
+  addRepository(type:1,name:Hyperbola IM,location:file${#58}/C:/Users/psamolisov/Developing/java/_learn-eclipse-plugins-workspace/build/repository);

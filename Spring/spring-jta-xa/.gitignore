@@ -1,0 +1,8 @@
+/target
+*/target
+.metadata
+*.log
+*.log.*
+*.lck
+*.epoch
+activemq-data

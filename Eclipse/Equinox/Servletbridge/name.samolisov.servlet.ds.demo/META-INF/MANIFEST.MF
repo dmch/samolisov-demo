@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Demo DS Servlet
+Bundle-SymbolicName: name.samolisov.servlet.ds.demo
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Pavel Samolisov
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Import-Package: javax.servlet;version="2.5.0",
+ javax.servlet.http;version="2.5.0",
+ org.osgi.service.http;version="1.2.1"
+Service-Component: OSGI-INF/servlet.xml

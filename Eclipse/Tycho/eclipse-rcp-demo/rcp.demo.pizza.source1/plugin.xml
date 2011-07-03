@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="rcp.demo.pizza">
+      <pizza
+            cost="100"
+            name="Pepperoni Pizza">
+      </pizza>
+      <pizza
+            cost="250"
+            name="Alsatian Tarte flambrcequot;">
+      </pizza>
+   </extension>
+
+</plugin>

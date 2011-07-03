@@ -1,0 +1,11 @@
+<contexts>
+  <context id="contactsView">
+    <description>This is Contacts View</description>
+    <topic 
+      label="Managing Contacts"
+      href="html/tasks/managingContacts.html" />
+    <topic 
+      label="Grouping Contacts"
+      href="html/tasks/groupingContacts.html" /> 
+  </context>
+</contexts>

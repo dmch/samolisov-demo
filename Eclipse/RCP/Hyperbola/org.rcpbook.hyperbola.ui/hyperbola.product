@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="Hyperbola IM" uid="org.rcpbook.hyperbola.product" id="org.rcpbook.hyperbola.ui.product" application="org.rcpbook.hyperbola.ui.application" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <aboutInfo>
+      <image path="/org.rcpbook.hyperbola.ui/icons/about.gif"/>
+      <text>
+         %aboutText
+      </text>
+   </aboutInfo>
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgs>-Dosgi.requiredJavaVersion=1.6 -XX:+AggressiveOpts -XX:MaxPermSize=128m -Dosgi.requiredJavaVersion=1.5 -Xms128m -Xmx364m</vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <windowImages i16="/org.rcpbook.hyperbola.ui/icons/alt16.gif" i32="/org.rcpbook.hyperbola.ui/icons/alt32.gif"/>
+
+   <splash
+      location="org.rcpbook.hyperbola.ui"
+      startupProgressRect="5,275,445,15"
+      startupMessageRect="7,252,445,20"
+      startupForegroundColor="000000" />
+   <launcher name="hyperbola">
+      <solaris/>
+      <win useIco="true">
+         <ico path="/org.rcpbook.hyperbola.ui/branding/hyperbola.ico"/>
+         <bmp
+            winSmallLow="/org.rcpbook.hyperbola.ui/branding/16h.bmp"
+            winMediumHigh="/org.rcpbook.hyperbola.ui/branding/32h.bmp"
+            winMediumLow="/org.rcpbook.hyperbola.ui/branding/32h.bmp"
+            winLargeHigh="/org.rcpbook.hyperbola.ui/branding/48h.bmp"
+            winLargeLow="/org.rcpbook.hyperbola.ui/branding/48l.bmp"/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="org.rcpbook.hyperbola" version="1.0.0.qualifier"/>
+   </features>
+
+
+</product>

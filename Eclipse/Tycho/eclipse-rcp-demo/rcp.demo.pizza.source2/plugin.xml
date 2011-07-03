@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="rcp.demo.pizza">
+      <pizza
+            cost="210.5"
+            name="Anatolian Lahmacun">
+      </pizza>
+   </extension>
+
+</plugin>

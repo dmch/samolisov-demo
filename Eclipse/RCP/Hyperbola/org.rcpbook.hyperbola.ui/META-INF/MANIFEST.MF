@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Hyperbola IM
+Bundle-SymbolicName: org.rcpbook.hyperbola.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: RCP Book
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.jivesoftware.smack,
+ org.eclipse.equinox.security;bundle-version="1.0.100",
+ org.eclipse.ui.console;bundle-version="3.5.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
+Import-Package: org.eclipselabs.p2.rcpupdate.utils

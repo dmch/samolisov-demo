@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.rcpbook.hyperbola.ui.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.rcpbook.hyperbola.ui.perspectives.HyperbolaPerspective"
+            icon="icons/chat.gif"
+            id="org.rcpbook.hyperbola.ui.perspective"
+            name="Hiperbola IM">
+      </perspective>
+      <perspective
+            class="org.rcpbook.hyperbola.ui.perspectives.FreeMovingPerspective"
+            icon="icons/groups.gif"
+            id="org.rcpbook.hyperbola.ui.freemoving"
+            name="Free Moving">
+      </perspective>
+      <perspective
+            class="org.rcpbook.hyperbola.ui.perspectives.DebugPerspective"
+            icon="icons/debug_persp.gif"
+            id="org.rcpbook.hyperbola.ui.debug"
+            name="Debug">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.rcpbook.hyperbola.ui.views.ContactsView"
+            icon="icons/chat.gif"
+            id="org.rcpbook.hyperbola.ui.views.contacts"
+            name="Contacts"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.rcpbook.hyperbola.ui.editors.ChatEditor"
+            default="false"
+            icon="icons/chat.gif"
+            id="org.rcpbook.hyperbola.ui.editors.chat"
+            name="Chat">
+      </editor>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.rcpbook.hyperbola.ui.application"
+            name="Hyperbola IM">
+         <property
+               name="appName"
+               value="Hyperbola IM">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="preferences.ini"/>
+         <property
+               name="aboutImage"
+               value="icons/about.gif">
+         </property>
+         <property
+               name="aboutText"
+               value="%aboutText">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/alt16.gif,icons/alt32.gif">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000000">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,252,445,20">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,275,445,15">
+         </property>
+      </product>
+   </extension>   
+   <extension
+        point="org.eclipse.core.runtime.adapters">
+     <factory
+            adaptableType="org.jivesoftware.smack.RosterGroup"
+            class="org.rcpbook.hyperbola.ui.HyperbolaAdapterFactory">
+       <adapter type="org.eclipse.ui.model.IWorkbenchAdapter"/>
+     </factory>
+     <factory
+            adaptableType="org.jivesoftware.smack.RosterEntry"
+            class="org.rcpbook.hyperbola.ui.HyperbolaAdapterFactory">
+       <adapter type="org.eclipse.ui.model.IWorkbenchAdapter"/>
+     </factory>
+     <factory
+            adaptableType="org.jivesoftware.smack.Roster"
+            class="org.rcpbook.hyperbola.ui.HyperbolaAdapterFactory">
+       <adapter type="org.eclipse.ui.model.IWorkbenchAdapter"/>
+     </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.rcpbook.hyperbola.ui.preferences.GeneralPreferencePage"
+            id="org.rcpbook.hyperbola.ui.preferences.general"
+            name="General">
+      </page>
+      <page
+            class="org.eclipse.ui.ExtensionFactory:keysPreferencePage"
+            id="org.rcpbook.hyperbola.ui.preferences.keys"
+            name="Keys">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.rcpbook.hyperbola.ui.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         id="org.rcpbook.hyperbola.ui.commands"
+         name="Hyperbola"
+         point="org.eclipse.ui.commands">
+      <category
+            description="Contact List Commands"
+            id="org.rcpbook.hyperbola.ui.commands.contactlist"
+            name="Contact List">
+      </category>
+      <command
+            categoryId="org.rcpbook.hyperbola.ui.commands.contactlist"
+            description="Add a contact to the selected contact group"
+            id="org.rcpbook.hyperbola.addContact"
+            name="Add Contact">
+      </command>
+      <category
+            description="Chat Commands"
+            id="org.rcpbook.hyperbola.ui.commands.chat"
+            name="Chat">
+      </category>
+      <command
+            categoryId="org.rcpbook.hyperbola.ui.commands.chat"
+            description="Open a chat editor"
+            id="org.rcpbook.hyperbola.chat"
+            name="Chat">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.rcpbook.hyperbola.addContact"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.rcpbook.hyperbola.ui.keyScheme"
+            sequence="M1+A">
+      </key>
+      <key
+            commandId="org.rcpbook.hyperbola.chat"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.rcpbook.hyperbola.ui.keyScheme"
+            sequence="M1+U">
+      </key>
+      <key
+            commandId="org.eclipse.ui.file.exit"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.rcpbook.hyperbola.ui.keyScheme"
+            sequence="M1+Q">
+      </key>
+      <key
+            commandId="org.eclipse.ui.window.preferences"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.rcpbook.hyperbola.ui.keyScheme"
+            sequence="M1+M2+P">
+      </key>
+      <key
+            commandId="org.eclipse.ui.help.aboutAction"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.rcpbook.hyperbola.ui.keyScheme"
+            sequence="M1+M2+F1">
+      </key>
+      <scheme
+            description="The special Key Scheme for Hyperbola IM"
+            id="org.rcpbook.hyperbola.ui.keyScheme"
+            name="Hyperbola Key Scheme">
+      </scheme>
+   </extension>
+   <extension
+      point="org.eclipse.ui.installationPages">
+     <page
+         class="org.eclipse.ui.internal.about.AboutFeaturesPage"
+         id="20.productInfo.features"
+         name="Features">
+     </page>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml"
+            primary="true"/>
+      <toc file="tocgettingstarted.xml"/>
+      <toc file="toctasks.xml"/>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts file="contexts.xml"/>
+   </extension>
+   <extension point="org.eclipse.ui.menus">
+        <menuContribution locationURI="menu:help">
+            <command commandId="org.eclipselabs.p2.rcpupdate.install" style="push"/>
+            <command commandId="org.eclipselabs.p2.rcpupdate.update" style="push"/>
+        </menuContribution>
+    </extension>
+</plugin>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Pizza Processor
+Bundle-SymbolicName: rcp.demo.pizza.processor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Pavel Samolisov
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: rcp.demo.pizza.processor

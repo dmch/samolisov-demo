@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+              activate="register"
+              deactivate="unregister"
+              name="name.samolisov.servlet.ds">
+   <implementation class="name.samolisov.servlet.ds.demo.WelcomeServletComponent"/>
+   <reference
+       bind="bindHttpService"
+       interface="org.osgi.service.http.HttpService" />
+</scr:component>

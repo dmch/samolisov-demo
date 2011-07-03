@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test for Pizza
+Bundle-SymbolicName: rcp.demo.pizza.processor.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit;bundle-version="4.8.1"
+Import-Package: rcp.demo.pizza.processor
+Bundle-Vendor: Pavel Samolisov

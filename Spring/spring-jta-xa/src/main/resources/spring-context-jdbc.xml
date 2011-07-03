@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:jms.properties</value>
+                <value>classpath:hibernate.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- XA Datasource - using Oracle DBMS (using the URL property)-->
+    <bean id="dataSource1"
+          class="com.atomikos.jdbc.AtomikosDataSourceBean"
+          init-method="init"
+          destroy-method="close">
+        <property name="uniqueResourceName" value="EIS1DBMS"/>
+        <property name="xaDataSourceClassName" value="${jdbc.oracle.driverClassName}"/>
+        <property name="xaProperties">
+            <props>
+                <prop key="URL">${jdbc.oracle.url}</prop>
+                <prop key="user">${jdbc.oracle.username}</prop>
+                <prop key="password">${jdbc.oracle.password}</prop>
+            </props>
+        </property>
+        <property name="poolSize" value="${jdbc.oracle.pool-size}"/>
+        <property name="testQuery" value="${jdbc.oracle.testQuery}"/>
+    </bean>
+
+    <!-- XA Datasource - using PostgreSQL DBMS (using the serverName, portNumber and other properties -->
+    <bean id="dataSource2"
+          class="com.atomikos.jdbc.AtomikosDataSourceBean"
+          init-method="init"
+          destroy-method="close">
+        <property name="uniqueResourceName" value="EIS2DBMS"/>
+        <property name="xaDataSourceClassName" value="${jdbc.postgres.driverClassName}"/>
+        <property name="xaProperties">
+            <props>
+                <prop key="serverName">${jdbc.postgres.serverName}</prop>
+                <prop key="portNumber">${jdbc.postgres.portNumber}</prop>
+                <prop key="databaseName">${jdbc.postgres.databaseName}</prop>
+                <prop key="user">${jdbc.postgres.username}</prop>
+                <prop key="password">${jdbc.postgres.password}</prop>
+            </props>
+        </property>
+        <property name="poolSize" value="${jdbc.postgres.pool-size}"/>
+        <property name="testQuery" value="${jdbc.postgres.testQuery}"/>
+    </bean>
+
+    <!-- Construct Atomikos UserTransactionManager, needed to configure Spring -->
+    <bean id="jtaTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+          init-method="init" destroy-method="close"/>
+
+    <!-- Also use Atomikos UserTransactionImp, needed to configure Spring  -->
+    <bean id="jtaUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+        <property name="transactionTimeout" value="300" />
+    </bean>
+
+    <!-- Configure the Spring framework to use JTA transactions from Atomikos -->
+    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+        <property name="transactionManager" ref="jtaTransactionManager"/>
+        <property name="userTransaction" ref="jtaUserTransaction"/>
+    </bean>
+
+    <bean id="productDao" class="name.samolisov.jta.xa.demo.eshop.jdbc.JdbcProductDao">
+        <property name="dataSource" ref="dataSource2"/>
+    </bean>
+
+    <bean id="eshopService" class="name.samolisov.jta.xa.demo.eshop.EshopService">
+        <property name="dao" ref="productDao"/>
+    </bean>
+
+    <bean id="crmDao" class="name.samolisov.jta.xa.demo.crm.jdbc.JdbcCrmDao">
+        <property name="dataSource" ref="dataSource1"/>
+    </bean>
+
+    <bean id="crmService" class="name.samolisov.jta.xa.demo.crm.CrmService">
+        <property name="dao" ref="crmDao"/>
+    </bean>
+
+    <bean id="integratorService" class="name.samolisov.jta.xa.demo.local.IntegratorService">
+        <property name="crmService" ref="crmService"/>
+        <property name="eshopService" ref="eshopService"/>
+    </bean>
+</beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <!-- Configure the ActiveMQ Queue Factory -->
+    <bean id="xaFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
+        <property name="brokerURL" value="${jms.broker.url}"/>
+    </bean>
+
+    <!-- Configure the ActiveMQ Queue for accounts -->
+    <bean id="crmQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="${jms.crm.queue.name}"/>
+    </bean>
+
+    <!-- Configure the Atomikos JMS Connector -->
+    <bean id="connectionFactoryBean"
+          class="com.atomikos.jms.AtomikosConnectionFactoryBean"
+          init-method="init"
+          destroy-method="close">
+        <property name="uniqueResourceName" value="QUEUE_BROCKER"/>
+        <property name="xaConnectionFactory" ref ="xaFactory"/>
+    </bean>
+</beans>

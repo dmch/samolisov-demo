@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <bean id="onCreateAccountAndOrdersListener" class="name.samolisov.jta.xa.demo.crm.jms.OnCreateAccountAndOrdersListener">
+        <property name="service" ref="crmService"/>
+    </bean>
+
+    <bean id="crmListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="connectionFactory" ref="connectionFactoryBean" />
+        <property name="messageListener" ref="onCreateAccountAndOrdersListener" />
+        <property name="destination" ref="crmQueue" />
+        <property name="concurrentConsumers" value="1" />
+        <property name="receiveTimeout" value="3000" />
+        <property name="sessionTransacted" value="true"/>
+    </bean>
+</beans>

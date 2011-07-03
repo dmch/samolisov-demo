@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+        id="application"
+        point="org.eclipse.core.runtime.applications">
+        <application>
+            <run
+                class="rcp.demo.pizza.ui.Application">
+            </run>
+        </application>
+    </extension>
+    <extension
+        point="org.eclipse.ui.perspectives">
+        <perspective
+            name="RCP Perspective"
+            class="rcp.demo.pizza.ui.Perspective"
+            id="rcp.demo.pizza.ui.perspective">
+        </perspective>
+    </extension>
+    <extension point="org.eclipse.ui.actionSets">
+        <actionSet label="Sample Action Set" visible="true"
+                   id="rcp.demo.pizza.ui.actionSet">
+            <action icon="icons/sample.gif" label="&amp;Pizza" tooltip="Pizza"
+                    class="rcp.demo.pizza.ui.actions.PizzaSampleAction"
+                    menubarPath="rcp.demo.pizza.ui.menu.PizzaSample/sampleGroup"
+                    toolbarPath="sampleGroup"
+                    id="rcp.demo.pizza.ui.actions.PizzaSample" />
+            <menu id="rcp.demo.pizza.ui.menu.PizzaSample" label="Pizza">
+                <separator name="sampleGroup" />
+            </menu>
+        </actionSet>
+    </extension>
+    <extension
+          id="pizza"
+          point="org.eclipse.core.runtime.products">
+       <product
+             application="rcp.demo.pizza.ui.application"
+             name="Pizza Product">
+          <property
+                name="appName"
+                value="Pizza Product">
+          </property>
+       </product>
+    </extension>
+
+</plugin>

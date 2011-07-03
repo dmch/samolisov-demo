@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target includeMode="feature" name="Equinox TP">
+<locations>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.6.1.r361_v20100903-7H7R07v8rtOZyYbv1I6aZgou5z07"/>
+<repository location="http://download.eclipse.org/releases/helios"/>
+</location>
+</locations>
+</target>

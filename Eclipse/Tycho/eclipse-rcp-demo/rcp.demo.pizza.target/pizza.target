@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="Pizza Target">
+<locations>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+<unit id="org.eclipse.rcp.source.feature.group" version="3.6.1.r361_v20100827-9OArFLdFjY-ThSQXmKvKz0_T"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.6.1.r361_v20100903-7H7R07v8rtOZyYbv1I6aZgou5z07"/>
+<repository location="http://download.eclipse.org/releases/helios"/>
+</location>
+</locations>
+</target>
